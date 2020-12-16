@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace webptool
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.InitialDirectory = Application.;
+            ofd.Title = "请选择要打开的文件";
+            ofd.Multiselect = true;
+            ofd.Filter = "图片文件|*.png";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult)
+            {
+
+            }
+
         }
     }
 }
