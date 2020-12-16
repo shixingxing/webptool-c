@@ -26,18 +26,35 @@ namespace webptool
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Select_File_Click(object sender, RoutedEventArgs e)
         {
+
             OpenFileDialog ofd = new OpenFileDialog();
             //ofd.InitialDirectory = Application.;
             ofd.Title = "请选择要打开的文件";
             ofd.Multiselect = true;
-            ofd.Filter = "图片文件|*.png";
+            ofd.Filter = "图片文件(png,jpg)|*.png;*.jpg";
             ofd.RestoreDirectory = true;
-            if (ofd.ShowDialog() == DialogResult)
+            if ((bool)ofd.ShowDialog())
             {
+                //选择了文件
+                String[] files = ofd.FileNames;
+                foreach (String file in files)
+                {
+                    Console.Out.WriteLine(file.ToString());
+                    MessageBox.Show(file.ToString());
+                }
+            }
+            else
+            {
+                //取消
 
             }
+
+
+
+
+
 
         }
     }
