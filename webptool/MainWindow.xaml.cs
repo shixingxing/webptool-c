@@ -30,7 +30,7 @@ namespace webptool
         {
 
             OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.InitialDirectory = Application.;
+            ofd.InitialDirectory = Environment.CurrentDirectory;
             ofd.Title = "请选择要打开的文件";
             ofd.Multiselect = true;
             ofd.Filter = "图片文件(png,jpg)|*.png;*.jpg";
