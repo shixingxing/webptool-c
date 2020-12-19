@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +19,7 @@ namespace webptool
             InitializeComponent();
         }
 
+        private ImageFile[] imageFiles;
         private void Select_File_Click(object sender, RoutedEventArgs e)
         {
 
@@ -30,14 +33,14 @@ namespace webptool
             {
                 //选择了文件
                 String[] files = ofd.FileNames;
-                ImageFile[] f = new ImageFile[files.Length];
+                imageFiles = new ImageFile[files.Length];
 
                 for (int i = 0; i < files.Length; i++)
                 {
-                    f[i] = new ImageFile(files[i]);
+                    imageFiles[i] = new ImageFile(files[i]);
                 }
-                Array.Sort(f);
-                AddListItem(f);
+                Array.Sort(imageFiles);
+                AddListItem(imageFiles);
 
             }
             else
@@ -94,6 +97,31 @@ namespace webptool
         private void Save_File_Click(object sender, RoutedEventArgs e)
         {
 
+            StringBuilder cmd = new StringBuilder();
+            cmd.Append("-loop 0 -lossy -q ");
+            //压缩质量
+            cmd.Append(90);
+
+            foreach(ImageFile file in imageFiles)
+            {
+                cmd.Append(" \"");
+                cmd.Append(file.file);
+                cmd.Append("\"");
+
+                //帧率
+                cmd.Append(" -d ");
+                cmd.Append(24);
+            }
+
+
+            //输出
+            cmd.Append(" -o output.webp");
+
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo("img2webp.exe",cmd.ToString());
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
         }
     }
 }
