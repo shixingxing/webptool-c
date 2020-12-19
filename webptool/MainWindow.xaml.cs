@@ -96,13 +96,28 @@ namespace webptool
 
         private void Save_File_Click(object sender, RoutedEventArgs e)
         {
+            String frame = this.frame.Text;
+            String zip = this.zip.Text;
+
+            int frameInt;
+            int zipInt;
+            try {
+                frameInt = int.Parse(frame);
+                zipInt = int.Parse(zip);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+      
 
             StringBuilder cmd = new StringBuilder();
             cmd.Append("-loop 0 -lossy -q ");
             //压缩质量
-            cmd.Append(90);
+            cmd.Append(zipInt);
 
-            foreach(ImageFile file in imageFiles)
+            foreach (ImageFile file in imageFiles)
             {
                 cmd.Append(" \"");
                 cmd.Append(file.file);
@@ -110,7 +125,7 @@ namespace webptool
 
                 //帧率
                 cmd.Append(" -d ");
-                cmd.Append(24);
+                cmd.Append(frameInt);
             }
 
 
@@ -118,7 +133,10 @@ namespace webptool
             cmd.Append(" -o output.webp");
 
             Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo("img2webp.exe",cmd.ToString());
+            ProcessStartInfo startInfo = new ProcessStartInfo("img2webp.exe", cmd.ToString());
+            startInfo.CreateNoWindow = true;
+            startInfo.UseShellExecute = false;
+
             process.StartInfo = startInfo;
             process.Start();
             process.WaitForExit();

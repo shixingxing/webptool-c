@@ -6,12 +6,22 @@
         xmlns:local="clr-namespace:webptool"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="选择文件" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Select_File_Click" Name="select_file" Padding="5,5,5,5"/>
 
-        <Button Content="生成webp" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Name="save_file" Padding="5,5,5,5" Click="Save_File_Click"/>
+    <Grid>
+        <Label Content="帧率" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="45,14,0,0" Text="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Name="frame" InputScope="Number" MaxLength="2" />
+
+        <Label Content="压缩率" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="145,14,0,0" Text="90" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Name="zip" InputScope="Number" MaxLength="2" />
+
+        <Button Content="选择文件" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Click="Select_File_Click" Name="select_file" Padding="5,5,5,5"/>
+
+        <Button Content="生成webp" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Name="save_file" Padding="5,5,5,5" Click="Save_File_Click"/>
 
         <ListView Margin="0,42,0,0" Name="file_list"/>
+
 
     </Grid>
 </Window>
