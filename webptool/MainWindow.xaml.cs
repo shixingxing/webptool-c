@@ -48,10 +48,6 @@ namespace webptool
 
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void AddListItem(ImageFile[] files)
         {
@@ -93,6 +89,11 @@ namespace webptool
                 }
 
             }
+        }
+
+        private void Save_File_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

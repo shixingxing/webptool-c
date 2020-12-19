@@ -9,9 +9,9 @@
     <Grid>
         <Button Content="选择文件" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Select_File_Click" Name="select_file" Padding="5,5,5,5"/>
 
-        <ListView SelectionChanged="ListView_SelectionChanged" Margin="0,42,0,0" Name="file_list">
+        <Button Content="生成webp" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Name="save_file" Padding="5,5,5,5" Click="Save_File_Click"/>
 
-        </ListView>
+        <ListView Margin="0,42,0,0" Name="file_list"/>
 
     </Grid>
 </Window>
