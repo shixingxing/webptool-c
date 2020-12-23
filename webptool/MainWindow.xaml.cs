@@ -141,5 +141,10 @@ namespace webptool
             process.Start();
             process.WaitForExit();
         }
+
+        private void Gif2Webp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

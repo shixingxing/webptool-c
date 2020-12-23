@@ -20,7 +20,10 @@
 
         <Button Content="生成webp" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Name="save_file" Padding="5,5,5,5" Click="Save_File_Click"/>
 
+        <Button Content="Gif转webp" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Padding="5,5,5,5" Click="Gif2Webp_Click"/>
+
         <ListView Margin="0,42,0,0" Name="file_list"/>
+        
 
 
     </Grid>
