@@ -147,7 +147,26 @@ namespace webptool
 
         private void Gif2Webp_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Environment.CurrentDirectory;
+            ofd.Title = "请选择要打开的文件";
+            ofd.Multiselect = false;
+            ofd.Filter = "图片文件(gif)|*.gif";
+            ofd.RestoreDirectory = true;
+            if ((bool)ofd.ShowDialog())
+            {
+                //选择了文件
+                String[] files = ofd.FileNames;
+                
 
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append("-loop 0 -lossy -q ");
+            }
+            else
+            {
+                //取消
+
+            }
         }
     }
 }
