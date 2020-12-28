@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -82,8 +83,10 @@ namespace webptool
             {
                 try
                 {
-                    int a = Int32.Parse(regex.Replace(file, ""));
-                    int b = Int32.Parse(regex.Replace(other.file, ""));
+                    FileInfo otherFileInFo = new FileInfo(other.file); 
+                    FileInfo fileInFo = new FileInfo(file); 
+                    int a = Int32.Parse(regex.Replace(fileInFo.Name, ""));
+                    int b = Int32.Parse(regex.Replace(otherFileInFo.Name, ""));
                     return a - b;
                 }
                 catch (Exception e)
