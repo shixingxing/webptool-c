@@ -157,10 +157,39 @@ namespace webptool
             {
                 //选择了文件
                 String[] files = ofd.FileNames;
-                
+                String zip = this.zip.Text;
+                int zipInt;
+                try
+                {
+                    zipInt = int.Parse(zip);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
+
 
                 StringBuilder cmd = new StringBuilder();
-                cmd.Append("-loop 0 -lossy -q ");
+                cmd.Append("-lossy -q ");
+                //压缩质量
+                cmd.Append(zipInt);
+
+                //输入
+                cmd.Append(" \"");
+                cmd.Append(files[0]);
+                cmd.Append("\"");
+
+                //输出
+                cmd.Append(" -o output.webp");
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo("gif2webp.exe", cmd.ToString());
+                startInfo.CreateNoWindow = true;
+                startInfo.UseShellExecute = false;
+
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
             }
             else
             {
