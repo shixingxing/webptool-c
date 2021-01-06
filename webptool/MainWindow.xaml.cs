@@ -180,8 +180,11 @@ namespace webptool
                 cmd.Append(files[0]);
                 cmd.Append("\"");
 
+                FileInfo fileInFo = new FileInfo(files[0]);
+                String fullName = fileInFo.Name;
+                String simpleName = fullName.Substring(0, fullName.IndexOf("."));
                 //输出
-                cmd.Append(" -o output.webp");
+                cmd.Append(" -o " + simpleName + ".webp");
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo("gif2webp.exe", cmd.ToString());
                 startInfo.CreateNoWindow = true;
