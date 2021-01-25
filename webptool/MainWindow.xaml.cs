@@ -105,7 +105,7 @@ namespace webptool
             int frameInt;
             int zipInt;
             try {
-                frameInt = int.Parse(frame);
+                frameInt = 1000 / int.Parse(frame);
                 zipInt = int.Parse(zip);
             }
             catch (Exception ex)
