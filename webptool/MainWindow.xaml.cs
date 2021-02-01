@@ -200,5 +200,43 @@ namespace webptool
 
             }
         }
+
+        private void check_file_Click(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Environment.CurrentDirectory;
+            ofd.Title = "请选择要打开的文件";
+            ofd.Multiselect = false;
+            ofd.Filter = "图片文件(webp)|*.webp";
+            ofd.RestoreDirectory = true;
+            if ((bool)ofd.ShowDialog())
+            {
+                //选择了文件
+                String[] files = ofd.FileNames;
+
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append("-info");
+
+                //输入
+                cmd.Append(" \"");
+                cmd.Append(files[0]);
+                cmd.Append("\"");
+
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo("vwebp.exe", cmd.ToString());
+                startInfo.CreateNoWindow = true;
+                startInfo.UseShellExecute = false;
+
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
+            }
+            else
+            {
+                //取消
+
+            }
+        }
     }
 }
